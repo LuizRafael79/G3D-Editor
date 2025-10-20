@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/39/trunk/G3D-Editor/src/g3deditor/swing/defaults
+END
+DefaultTable.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/33/trunk/G3D-Editor/src/g3deditor/swing/defaults/DefaultTable.java
+END
+DefaultComboBox.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/39/trunk/G3D-Editor/src/g3deditor/swing/defaults/DefaultComboBox.java
+END
+DefaultTextField.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/33/trunk/G3D-Editor/src/g3deditor/swing/defaults/DefaultTextField.java
+END
+DefaultRadioButton.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/36/trunk/G3D-Editor/src/g3deditor/swing/defaults/DefaultRadioButton.java
+END
+DefaultButton.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/33/trunk/G3D-Editor/src/g3deditor/swing/defaults/DefaultButton.java
+END
+DefaultToggleButton.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/36/trunk/G3D-Editor/src/g3deditor/swing/defaults/DefaultToggleButton.java
+END
+DefaultLabel.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/33/trunk/G3D-Editor/src/g3deditor/swing/defaults/DefaultLabel.java
+END
+DefaultCheckBox.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/36/trunk/G3D-Editor/src/g3deditor/swing/defaults/DefaultCheckBox.java
+END

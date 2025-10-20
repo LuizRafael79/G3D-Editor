@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/51/trunk/G3D-Editor/src/g3deditor/jogl/shader/uniform
+END
+GLUniformVec1f.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/51/trunk/G3D-Editor/src/g3deditor/jogl/shader/uniform/GLUniformVec1f.java
+END
+GLUniformVec2f.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/50/trunk/G3D-Editor/src/g3deditor/jogl/shader/uniform/GLUniformVec2f.java
+END
+GLUniformVec1i.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/50/trunk/G3D-Editor/src/g3deditor/jogl/shader/uniform/GLUniformVec1i.java
+END
+GLUniformVec1fv.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/50/trunk/G3D-Editor/src/g3deditor/jogl/shader/uniform/GLUniformVec1fv.java
+END
+GLUniformVec3fv.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/50/trunk/G3D-Editor/src/g3deditor/jogl/shader/uniform/GLUniformVec3fv.java
+END
+GLUniformVec1iv.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/50/trunk/G3D-Editor/src/g3deditor/jogl/shader/uniform/GLUniformVec1iv.java
+END
+GLUniformVec4fv.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/50/trunk/G3D-Editor/src/g3deditor/jogl/shader/uniform/GLUniformVec4fv.java
+END

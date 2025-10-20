@@ -1,0 +1,12 @@
+<!ELEMENT launchConfiguration (booleanAttribute+,listAttribute+,stringAttribute+)>
+<!ATTLIST launchConfiguration type NMTOKEN #REQUIRED>
+<!ELEMENT booleanAttribute EMPTY>
+<!ATTLIST booleanAttribute key NMTOKEN #REQUIRED>
+<!ATTLIST booleanAttribute value NMTOKEN #REQUIRED>
+<!ELEMENT listAttribute (listEntry)>
+<!ATTLIST listAttribute key NMTOKEN #REQUIRED>
+<!ELEMENT listEntry EMPTY>
+<!ATTLIST listEntry value CDATA #REQUIRED>
+<!ELEMENT stringAttribute EMPTY>
+<!ATTLIST stringAttribute key NMTOKEN #REQUIRED>
+<!ATTLIST stringAttribute value CDATA #REQUIRED>
