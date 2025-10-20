@@ -1,10 +1,6 @@
 [![Build G3D-Editor (Linux)](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant.yml/badge.svg)](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant.yml)
 [![Build G3D-Editor (Linux)](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant2.yml/badge.svg)](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant2.yml)
 [![license](https://img.shields.io/badge/license-MIXED-blue.svg)](LICENSE)
-[![platform](https://img.shields.io/badge/platform-Linux-lightgreen)](#)
-[![platform](https://img.shields.io/badge/platform-Windows-red)](#)
-
-
 
 # G3D-Editor - Geodata Editor Revisited
 
