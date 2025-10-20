@@ -1,4 +1,4 @@
-![Build Status](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant.yml/badge.svg)
+![Build Status](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant.yml/badge.svg?style=social)
 
 # G3D-Editor - Geodata Editor Revisited
 
