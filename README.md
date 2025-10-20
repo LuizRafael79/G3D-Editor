@@ -1,3 +1,5 @@
+![Build Status](https://github.com/SeuUsuario/G3D-Editor/actions/workflows/ant.yml/badge.svg)
+
 # G3D-Editor - Geodata Editor Revisited
 
 This project was created by Forsaiken of L2JServer, and is a fork of the original project available on Google Code (https://code.google.com/archive/p/g3d-editor/).
