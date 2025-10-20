@@ -33,4 +33,4 @@ jobs:
 
     # 5️⃣ Opcional: listar o conteúdo da pasta build para debug
     - name: List build output
-      run: ls -R build/linux_x64
+      run: ls -R build/win_x64
