@@ -1,4 +1,4 @@
-name: Java CI with Ant
+name: G3D-Editor (Linux)
 
 # Executa em push e pull request na branch master
 on:
