@@ -15,7 +15,7 @@
 		<fileset dir="${lib}">
 			<include name="gluegen-rt.jar" />
 			<include name="jogl-all.jar" />
-		    <include name="jogl-all-natives-windows-amd64.jar" />
+		        <include name="jogl-all-natives-windows-amd64.jar" />
 			<include name="gluegen-rt-natives-windows-amd64.jar" />
 		</fileset>
 	</path>
