@@ -36,12 +36,17 @@ jobs:
     - name: Install GitHub CLI
       run: sudo apt-get install -y gh
 
-    - name: Create GitHub Release
+    - name: Create or update GitHub Release
       run: |
-        # Substitua TAG_NAME pela tag que você quer criar/update manualmente
         TAG_NAME="v1.0"
-        gh release view $TAG_NAME || gh release create $TAG_NAME build/linux_x64/G3DEditor_linux_x64_*.tar.gz \
-          --title "G3DEditor Linux $TAG_NAME" \
-          --notes "Build gerado automaticamente"
+        if gh release view $TAG_NAME >/dev/null 2>&1; then
+          echo "Release exists, updating assets..."
+          gh release upload $TAG_NAME build/linux_x64/G3DEditor_linux_x64_*.tar.gz --clobber
+        else
+          echo "Release does not exist, creating..."
+          gh release create $TAG_NAME build/linux_x64/G3DEditor_linux_x64_*.tar.gz \
+            --title "G3DEditor Linux $TAG_NAME" \
+            --notes "Build gerado automaticamente"
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_BUILD }}
