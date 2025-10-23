@@ -5,10 +5,6 @@ on:
     paths:
       - 'src/**'
       - 'build_win_x64.xml'
-  pull_request:
-    paths:
-      - 'src/**'
-      - 'build_win_x64.xml'
   workflow_dispatch:
 
 jobs:
@@ -36,3 +32,21 @@ jobs:
       with:
         name: G3DEditor-windows
         path: build/win_x64/G3DEditor_win_x64_*.zip
+
+    - name: Install GitHub CLI
+      run: choco install gh -y
+
+    - name: Create or update GitHub Release
+      run: |
+        SET TAG_NAME=v1.0
+
+        gh release view %TAG_NAME% >nul 2>&1
+        IF %ERRORLEVEL% EQU 0 (
+          echo "Release exists, updating assets..."
+          gh release upload %TAG_NAME% build/win_x64/G3DEditor_win_x64_*.zip --clobber
+        ) ELSE (
+          echo "Release does not exist, creating..."
+          gh release create %TAG_NAME% build/win_x64/G3DEditor_win_x64_*.zip --title "G3DEditor Windows %TAG_NAME%" --notes "Build gerado automaticamente"
+        )
+      env:
+        GITHUB_TOKEN: ${{ secrets.REPO_BUILD }}
