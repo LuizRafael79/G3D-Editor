@@ -1,0 +1,36 @@
+name: G3D-Editor (Windows)
+
+# Executa em push e pull request na branch master
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1️⃣ Faz checkout do código
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2️⃣ Configura o JDK 25
+    - name: Set up JDK 25
+      uses: actions/setup-java@v4
+      with:
+        java-version: '25'
+        distribution: 'temurin'
+
+    # 3️⃣ Instala o Ant
+    - name: Install Apache Ant
+      run: sudo apt-get update && sudo apt-get install -y ant
+
+    # 4️⃣ Build usando seu build.xml
+    - name: Build with Ant
+      run: ant -f build_win_x64.xml dist
+
+    # 5️⃣ Opcional: listar o conteúdo da pasta build para debug
+    - name: List build output
+      run: ls -R build/win_x64

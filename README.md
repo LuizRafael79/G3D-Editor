@@ -1,3 +1,7 @@
+[![Build G3D-Editor (Linux)](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant.yml/badge.svg)](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant.yml)
+[![Build G3D-Editor (Linux)](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant2.yml/badge.svg)](https://github.com/LuizRafael79/G3D-Editor/actions/workflows/ant2.yml)
+[![license](https://img.shields.io/badge/license-MIXED-blue.svg)](LICENSE)
+
 # G3D-Editor - Geodata Editor Revisited
 
 This project was created by Forsaiken of L2JServer, and is a fork of the original project available on Google Code (https://code.google.com/archive/p/g3d-editor/).
