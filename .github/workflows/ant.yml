@@ -27,7 +27,9 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: G3DEditor-linux
-        path: build/linux_x64/G3DEditor_linux_x64_*.tar.gz
+        path: |
+          build/linux_x64/G3DEditor_linux_x64_*.tar.gz
+          build/linux_x64/G3DEditor_linux_x64_*.tar
 
     - name: Install GitHub CLI
       run: sudo apt-get install -y gh
@@ -35,36 +37,43 @@ jobs:
     - name: Determine next tag
       id: tag
       run: |
+        prefix="linux"
         base_major=1
         git fetch --tags
-        existing=$(git tag --list "${base_major}.*")
+        existing=$(git tag --list "${prefix}-${base_major}.*")
         if [ -z "$existing" ]; then
-          # Se não houver tags, começa em 1.6
-          next_tag="${base_major}.6"
+          next_tag="${prefix}-${base_major}.6"
         else
           max_minor=0
           for t in $existing; do
-            minor=${t#*.}
+            minor=${t##*.}
             if [[ $minor =~ ^[0-9]+$ ]] && [ $minor -gt $max_minor ]; then
               max_minor=$minor
             fi
           done
           next_minor=$((max_minor + 1))
-          next_tag="${base_major}.${next_minor}"
+          next_tag="${prefix}-${base_major}.${next_minor}"
         fi
         echo "Next tag: $next_tag"
         echo "TAG_NAME=$next_tag" >> $GITHUB_OUTPUT
+        # gerar título amigável do release
+        release_title="G3DEditor Linux v${next_tag##*-}"
+        echo "RELEASE_TITLE=$release_title" >> $GITHUB_OUTPUT
 
     - name: Create or update GitHub Release
       run: |
         if gh release view ${{ steps.tag.outputs.TAG_NAME }} >/dev/null 2>&1; then
           echo "Release exists, updating assets..."
-          gh release upload ${{ steps.tag.outputs.TAG_NAME }} build/linux_x64/G3DEditor_linux_x64_*.tar.gz --clobber
+          gh release upload ${{ steps.tag.outputs.TAG_NAME }} \
+            build/linux_x64/G3DEditor_linux_x64_*.tar.gz \
+            build/linux_x64/G3DEditor_linux_x64_*.tar \
+            --clobber
         else
           echo "Release does not exist, creating..."
-          gh release create ${{ steps.tag.outputs.TAG_NAME }} build/linux_x64/G3DEditor_linux_x64_*.tar.gz \
-            --title "G3DEditor Linux ${{ steps.tag.outputs.TAG_NAME }}" \
+          gh release create ${{ steps.tag.outputs.TAG_NAME }} \
+            build/linux_x64/G3DEditor_linux_x64_*.tar.gz \
+            build/linux_x64/G3DEditor_linux_x64_*.tar \
+            --title "${{ steps.tag.outputs.RELEASE_TITLE }}" \
             --notes "Build gerado automaticamente"
-        fi
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_BUILD }}
