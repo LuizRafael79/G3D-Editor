@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="build_linux_x64.dtd"?>
-<project name="G3DEditor Linux x64" default="dist-deflate" basedir=".">
+<project name="G3DEditor Linux x64" default="dist-targz" basedir=".">
 	<property name="main" location="g3deditor.G3DEditor" />
 	<property name="src" location="src" />
 	<property name="dist" location="dist" />
@@ -52,7 +51,7 @@
 
 	<target name="dist" depends="jar">
 		<copy todir="${build.geo}">
-			<fileset dir="${dist}" />
+			<fileset dir="${dist}" excludes="G3DEditor.bat" />
 		</copy>
 		<copy todir="${build.geo.lib}">
 			<fileset dir="${lib}" />
@@ -62,10 +61,19 @@
 		</copy>
 	</target>
 
-	<target name="dist-deflate" depends="dist">
-		<tstamp>
-			<format property="TODAY" pattern="yyyyMMdd" />
-		</tstamp>
-		<zip destfile="${build}/G3DEditor_linux_x64_${TODAY}.zip" basedir="${build.geo}" update="true" compress="false" />
+	<target name="dist-targz" depends="dist">
+	    <tstamp>
+	        <format property="TODAY" pattern="yyyyMMdd" />
+	    </tstamp>
+	    <delete includeemptydirs="true">
+	        <fileset dir="${build}" includes="G3DEditor_linux_x64_*.tar.gz"/>
+	    </delete>
+	    <tar destfile="${build}/G3DEditor_linux_x64_${TODAY}.tar">
+	        <tarfileset dir="${build.geo}" />
+            <exclude name="G3DEditor.bat"/>
+	    </tar>
+	    <gzip src="${build}/G3DEditor_linux_x64_${TODAY}.tar"
+	          destfile="${build}/G3DEditor_linux_x64_${TODAY}.tar.gz"/>
 	</target>
+
 </project>

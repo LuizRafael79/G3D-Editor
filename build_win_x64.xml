@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="G3DEditor Windows x64" default="dist-deflate" basedir=".">
+<project name="G3DEditor Windows x64" default="dist-zip" basedir=".">
 	<property name="main" location="g3deditor.G3DEditor" />
 	<property name="src" location="src" />
 	<property name="dist" location="dist" />
@@ -51,7 +51,7 @@
 
 	<target name="dist" depends="jar">
 		<copy todir="${build.geo}">
-			<fileset dir="${dist}">
+			<fileset dir="${dist}" excludes="G3DEditor.sh">
 			</fileset>
 		</copy>
 		<copy todir="${build.geo.lib}">
@@ -63,10 +63,18 @@
 		</copy>
 	</target>
 
-	<target name="dist-deflate" depends="dist">
-		<tstamp>
-			<format property="TODAY" pattern="yyyyMMdd" />
-		</tstamp>
-		<zip destfile="${build}/G3DEditor_win_x64_${TODAY}.zip" basedir="${build.geo}" update="true" compress="false" />
+	<target name="dist-zip" depends="dist">
+	    <tstamp>
+	        <format property="TODAY" pattern="yyyyMMdd" />
+	    </tstamp>
+	    <delete includeemptydirs="true">
+	        <fileset dir="${build}" includes="G3DEditor_win_x64_*.zip"/>
+	    </delete>
+	    <zip destfile="${build}/G3DEditor_win_x64_${TODAY}.zip">
+	        <zipfileset dir="${build.geo}">
+	            <exclude name="G3DEditor.sh"/>
+	        </zipfileset>
+	    </zip>
 	</target>
+
 </project>
