@@ -5,10 +5,6 @@ on:
     paths:
       - 'src/**'
       - 'build_linux_x64.xml'
-  pull_request:
-    paths:
-      - 'src/**'
-      - 'build_linux_x64.xml'
   workflow_dispatch:
 
 jobs:
