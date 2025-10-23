@@ -32,7 +32,7 @@ jobs:
       run: ant -f build_linux_x64.xml dist-targz
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: G3DEditor-linux
         path: build/linux_x64/G3DEditor_linux_x64_*.tar.gz
