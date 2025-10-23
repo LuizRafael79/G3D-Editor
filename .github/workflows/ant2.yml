@@ -32,7 +32,7 @@ jobs:
       run: ant -f build_win_x64.xml dist-zip
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: G3DEditor-windows
         path: build/win_x64/G3DEditor_win_x64_*.zip
