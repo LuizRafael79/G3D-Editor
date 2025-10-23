@@ -36,21 +36,26 @@ jobs:
       id: tag
       shell: pwsh
       run: |
+        $prefix = "windows"
         git fetch --tags
-        $existing = git tag --list "1.*"
+        $existing = git tag --list "$prefix-1.*"
         if (-not $existing) {
-            $next_tag = "1.6"
+            $next_tag = "$prefix-1.6"
         } else {
             $max_minor = 0
             foreach ($t in $existing) {
-                $minor = [int]($t.Split(".")[1])
+                $minor = [int]($t.Split("-")[1].Split(".")[1])
                 if ($minor -gt $max_minor) { $max_minor = $minor }
             }
             $next_minor = $max_minor + 1
-            $next_tag = "1.$next_minor"
+            $next_tag = "$prefix-1.$next_minor"
         }
         Write-Output "Next tag: $next_tag"
         echo "TAG_NAME=$next_tag" | Out-File -Encoding UTF8 -Append $env:GITHUB_ENV
+
+        # gerar título amigável do release
+        $release_title = "G3DEditor Windows v$($next_tag.Split('-')[1])"
+        echo "RELEASE_TITLE=$release_title" | Out-File -Encoding UTF8 -Append $env:GITHUB_ENV
 
     - name: Create or update GitHub Release
       shell: pwsh
@@ -61,7 +66,7 @@ jobs:
         } else {
             Write-Host "Release does not exist, creating..."
             gh release create $env:TAG_NAME build/win_x64/G3DEditor_win_x64_*.zip `
-                --title "G3DEditor Windows $env:TAG_NAME" `
+                --title "$env:RELEASE_TITLE" `
                 --notes "Build gerado automaticamente"
         }
       env:
