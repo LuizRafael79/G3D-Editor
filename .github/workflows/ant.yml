@@ -36,16 +36,34 @@ jobs:
     - name: Install GitHub CLI
       run: sudo apt-get install -y gh
 
+    - name: Determine next tag
+      id: tag
+      run: |
+        base_major=1
+        git fetch --tags
+        # pega todas as tags que começam com a major version
+        existing=$(git tag --list "${base_major}.*")
+        max_minor=0
+        for t in $existing; do
+          minor=${t#*.}  # pega a parte depois do ponto
+          if [[ $minor =~ ^[0-9]+$ ]] && [ $minor -gt $max_minor ]; then
+            max_minor=$minor
+          fi
+        done
+        next_minor=$((max_minor + 1))
+        next_tag="${base_major}.${next_minor}"
+        echo "Next tag: $next_tag"
+        echo "TAG_NAME=$next_tag" >> $GITHUB_OUTPUT
+
     - name: Create or update GitHub Release
       run: |
-        TAG_NAME="v1.0"
-        if gh release view $TAG_NAME >/dev/null 2>&1; then
+        if gh release view ${{ steps.tag.outputs.TAG_NAME }} >/dev/null 2>&1; then
           echo "Release exists, updating assets..."
-          gh release upload $TAG_NAME build/linux_x64/G3DEditor_linux_x64_*.tar.gz --clobber
+          gh release upload ${{ steps.tag.outputs.TAG_NAME }} build/linux_x64/G3DEditor_linux_x64_*.tar.gz --clobber
         else
           echo "Release does not exist, creating..."
-          gh release create $TAG_NAME build/linux_x64/G3DEditor_linux_x64_*.tar.gz \
-            --title "G3DEditor Linux $TAG_NAME" \
+          gh release create ${{ steps.tag.outputs.TAG_NAME }} build/linux_x64/G3DEditor_linux_x64_*.tar.gz \
+            --title "G3DEditor Linux ${{ steps.tag.outputs.TAG_NAME }}" \
             --notes "Build gerado automaticamente"
         fi
       env:
