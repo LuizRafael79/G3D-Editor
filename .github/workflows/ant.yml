@@ -1,10 +1,6 @@
 name: G3D-Editor (Linux)
 
 on:
-  push:
-    paths:
-      - 'src/**'
-      - 'build_linux_x64.xml'
   workflow_dispatch:
 
 jobs:
@@ -41,17 +37,21 @@ jobs:
       run: |
         base_major=1
         git fetch --tags
-        # pega todas as tags que começam com a major version
         existing=$(git tag --list "${base_major}.*")
-        max_minor=0
-        for t in $existing; do
-          minor=${t#*.}  # pega a parte depois do ponto
-          if [[ $minor =~ ^[0-9]+$ ]] && [ $minor -gt $max_minor ]; then
-            max_minor=$minor
-          fi
-        done
-        next_minor=$((max_minor + 1))
-        next_tag="${base_major}.${next_minor}"
+        if [ -z "$existing" ]; then
+          # Se não houver tags, começa em 1.6
+          next_tag="${base_major}.6"
+        else
+          max_minor=0
+          for t in $existing; do
+            minor=${t#*.}
+            if [[ $minor =~ ^[0-9]+$ ]] && [ $minor -gt $max_minor ]; then
+              max_minor=$minor
+            fi
+          done
+          next_minor=$((max_minor + 1))
+          next_tag="${base_major}.${next_minor}"
+        fi
         echo "Next tag: $next_tag"
         echo "TAG_NAME=$next_tag" >> $GITHUB_OUTPUT
 
