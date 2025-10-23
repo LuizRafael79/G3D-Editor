@@ -75,5 +75,6 @@ jobs:
             build/linux_x64/G3DEditor_linux_x64_*.tar \
             --title "${{ steps.tag.outputs.RELEASE_TITLE }}" \
             --notes "Build gerado automaticamente"
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_BUILD }}
